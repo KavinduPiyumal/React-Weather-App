@@ -3,11 +3,12 @@ import './App.css';
 import axios from 'axios';
 
 function App() {
+  
   const [weather, setweather] = useState(null);
   const [input, setinput] = useState("");
   useEffect(() =>{
     axios
-    .get("http://api.weatherapi.com/v1/current.json?key=cc8265e829cd48a2956135338212812&q=Colombo")
+    .get(`http://api.weatherapi.com/v1/current.json?key=cc8265e829cd48a2956135338212812&q=Colombo`)
     .then((data) =>{
       setweather(data.data);
       console.log(data.data);
@@ -44,7 +45,7 @@ function App() {
   }
 
   return (
-    <div className="warm app">
+    <div className="app warm ">
       {weather && (
            <main>
            <div className="search-box">
@@ -56,7 +57,7 @@ function App() {
                 <div className="date">{dateBuilder(new Date())}</div>
                 <div className="condition">
                   <h3>{weather.current.condition.text}</h3>
-                  <img src={weather.current.condition.icon} />
+                  <img src={weather.current.condition.icon} alt="condition"/>
                 </div>
                 <div className="temp">
                   <h2>{weather.current.temp_c} <span>&#176;C</span></h2>
